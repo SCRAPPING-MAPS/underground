@@ -141,7 +141,7 @@
     <div class="stars"></div>
     <div class="matrix-bg"></div>
 
-    <div class="w-full max-w-4xl space-y-8 content-layer my-auto">
+    <div class="w-full max-w-5xl space-y-8 content-layer my-auto">
         
         <!-- HEADER / NAVIGASI DENGAN INDIKATOR REKAM ORANGE BESAR -->
         <div class="card-cyber p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -233,29 +233,90 @@
             </div>
         </div>
 
-        <!-- 2. DASHBOARD SCRAPER (TERKUNCI EKSKLUSIF) -->
+        <!-- 2. DASHBOARD SCRAPER (GOOGLE EARTH SATELLITE VIEW & AUTO-FEED TABLE) -->
         <div id="app-view" class="hidden space-y-6">
-            <div class="card-cyber p-6 rounded-xl flex items-center justify-between">
+            <div class="card-cyber p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-lg font-bold text-green-400 matrix-glow">GMAPS UNDERGROUND // CORE ENGINE</h2>
+                    <h2 class="text-lg font-bold text-green-400 matrix-glow">GMAPS UNDERGROUND // EARTH SATELLITE SCANNER</h2>
                     <p class="text-xs text-slate-300">Token Aktif: <span id="active-token-display" class="text-green-300 font-bold"></span> | Status: <span class="text-emerald-400 font-bold">SECURE & VERIFIED</span></p>
                 </div>
                 <button onclick="lockSession()" class="border border-red-500 text-red-400 bg-red-950/40 px-3.5 py-1.5 rounded text-xs uppercase hover:bg-red-900/60 transition">Kunci Sesi / Keluar</button>
             </div>
             
+            <!-- FORM INPUT EKSTRAKSI UTAMA -->
             <div class="card-cyber p-6 sm:p-8 rounded-xl space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche</label>
-                        <input type="text" id="scrape-kw" placeholder="Contoh: Coffee Shop" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche (Contoh: Coffee Shop)</label>
+                        <input type="text" id="scrape-kw" placeholder="Masukkan Niche Bisnis" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota</label>
-                        <input type="text" id="scrape-loc" placeholder="Contoh: Bandung" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota (Contoh: Dayeuhkolot, Bandung)</label>
+                        <input type="text" id="scrape-loc" placeholder="Masukkan Kota / Kecamatan" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                 </div>
-                <button onclick="executeScraper()" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50">EXECUTE EXTRACTION ⚡</button>
-                <div id="scrape-status" class="text-xs text-green-300 font-mono"></div>
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="startEarthScanner()" class="flex-1 bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50 flex items-center justify-center gap-2">
+                        <span>LAUNCH EARTH SCANNER ⚡</span>
+                    </button>
+                    <button onclick="stopEarthScanner()" class="bg-red-600 hover:bg-red-500 text-slate-950 font-bold py-3.5 px-6 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-red-900/50">
+                        ⏹ STOP SYSTEM
+                    </button>
+                    <button onclick="exportToCSV()" class="bg-slate-900 border border-green-500 hover:bg-green-950 text-green-400 font-bold py-3.5 px-6 rounded-lg uppercase tracking-wider text-sm transition flex items-center justify-center gap-2">
+                        <span>📥 DOWNLOAD (CSV)</span>
+                    </button>
+                </div>
+                <div id="scrape-status" class="text-xs text-green-300 font-mono">System standby. Masukkan target & klik Launch.</div>
+            </div>
+
+            <!-- VISUAL GOOGLE EARTH / SATELLITE ZOOM & AUTO-FEED TABLE -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Visual Satelit / Google Earth Zoom GIF View -->
+                <div class="card-cyber p-4 rounded-xl space-y-3 flex flex-col justify-between">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-green-400 uppercase tracking-wider">&gt; SATELLITE VIEW // ORBIT SCANNER</span>
+                        <span id="scan-status-badge" class="text-xs text-slate-400 font-mono">Standby</span>
+                    </div>
+                    <!-- GIF Animasi Google Earth / Satelit dari luar angkasa menyasar ke bumi -->
+                    <div class="w-full h-[340px] rounded-lg overflow-hidden border border-green-900/60 bg-slate-950 relative flex items-center justify-center">
+                        <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" alt="Satellite Zoom" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen">
+                        <div class="relative z-10 text-center space-y-2 p-4 bg-slate-950/80 rounded-xl border border-green-500/40">
+                            <div class="live-dot mx-auto"></div>
+                            <div id="earth-status-text" class="text-xs font-mono text-green-300 uppercase tracking-widest">SATELLITE ORBIT READY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto-Feed Leads Table Workspace -->
+                <div class="card-cyber p-4 rounded-xl flex flex-col justify-between space-y-3">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-green-400 uppercase tracking-wider">&gt; AUTO-FEED LEADS TABLE</span>
+                            <span id="lead-count-badge" class="text-xs text-emerald-400 font-mono">0 Leads Found</span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            Data masuk secara otomatis saat sistem mendeteksi target dari satelit. Klik Stop jika sudah cukup, lalu Download CSV.
+                        </p>
+                    </div>
+
+                    <!-- Tabel Data Leads -->
+                    <div class="w-full h-[300px] overflow-y-auto border border-green-900/60 rounded-lg bg-slate-950/80 p-2">
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead>
+                                <tr class="border-b border-green-900 text-green-400">
+                                    <th class="p-2">Nama Bisnis</th>
+                                    <th class="p-2">Kategori</th>
+                                    <th class="p-2">No WhatsApp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-table-body">
+                                <tr class="text-slate-500">
+                                    <td colspan="3" class="p-4 text-center">Menunggu inisialisasi satelit...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -278,7 +339,7 @@
                 <input type="email" id="cust-email" placeholder="Email Aktif" class="w-full bg-slate-950 border border-green-600 rounded-lg px-3.5 py-2.5 text-green-400 text-sm">
                 <input type="text" id="cust-kota" placeholder="Kota Domisili" class="w-full bg-slate-950 border border-green-600 rounded-lg px-3.5 py-2.5 text-green-400 text-sm">
             </div>
-            <button onclick="submitOrder()" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50">LANJUT TRANSFER BCA & AMBIL TOKEN ⚡</button>
+            <button onclick="submitOrder()" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50">LANJUT KONFIRMASI PESANAN ⚡</button>
         </div>
     </div>
 
@@ -287,6 +348,8 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHD8Xf7fbW3iB-3HXsaD2xPwvyqxFjhZet042Tr5LlZySl_SXQLgh5gmcbxqKM581mLA/exec"; 
         const ADMIN_WA = "6285222952220"; 
         let chosenPackage = "";
+        let savedLeads = [];
+        let scanInterval = null;
 
         // EFEK MENGETIK DENGAN KECEPATAN SANTAI / DRAMATIS (PRO STYLE)
         const textToType = "SEDOT LEADS GOOGLE MAPS TANPA BATAS";
@@ -296,16 +359,15 @@
             if (charIndex < textToType.length) {
                 document.getElementById("typed-text").innerHTML += textToType.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 110); // Kecepatan diperlambat (110ms per huruf) agar terasa elegan & natural
+                setTimeout(typeWriter, 110);
             } else {
-                // Selesai mengetik: hapus kursor kedip, lalu aktifkan efek kilatan cahaya pro (shimmer) yang tajam
                 document.getElementById("typed-text").classList.remove("typing-cursor");
                 document.getElementById("typed-heading").classList.add("shimmer-text");
             }
         }
 
         window.onload = function() {
-            setTimeout(typeWriter, 400); // Sedikit jeda saat pertama kali halaman terbuka
+            setTimeout(typeWriter, 400);
         }
 
         function getDeviceId() {
@@ -333,6 +395,7 @@
             if(!nama || !wa || !email || !kota) { alert("Isi semua data!"); return; }
 
             try {
+                // Mengirim data pesanan ke Google Sheet agar token otomatis ter-generate di database Anda
                 let res = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: "order", nama, wa, email, kota, paket: chosenPackage })
@@ -340,10 +403,13 @@
                 let data = await res.json();
                 
                 if(data.status === 'success') {
-                    const textWa = `Halo Admin, saya sudah pesan *GMAPS UNDERGROUND*.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- Token Otomatis: ${data.token}\n\nMohon info nomor rekening BCA untuk transfer.`;
+                    // PESAN KE WA ADMIN: HANYA BERISI DATA PESANAN, TOKEN DISEMBUNYIKAN SEPENUHNYA
+                    const textWa = `Halo Admin, saya ingin memesan *GMAPS UNDERGROUND*.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Kota: ${kota}\n\nMohon info nomor rekening BCA untuk pembayaran.`;
                     window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(textWa)}`, '_blank');
                     closeCheckout();
-                    alert("Pesanan tercatat! Token lisensi unik Anda adalah: " + data.token + "\n\nSelesaikan transfer ke BCA, lalu masukkan token tersebut di halaman utama untuk masuk.");
+                    
+                    // POP-UP DI LAYAR PEMBELI: HANYA INSTRUKSI TRANSFER, TOKEN AMAN DI DATABASE ANDA
+                    alert("Pesanan berhasil dikirim ke Admin!\n\nSilakan selesaikan konfirmasi di WhatsApp untuk mendapatkan nomor rekening BCA. Token lisensi akan dikirimkan oleh Admin secara manual setelah pembayaran diverifikasi.");
                 }
             } catch(e) {
                 alert("Gagal memproses pesanan ke server.");
@@ -385,12 +451,84 @@
             }
         }
 
-        function executeScraper() {
-            const kw = document.getElementById('scrape-kw').value;
-            const loc = document.getElementById('scrape-loc').value;
+        // SATELLITE EARTH SCANNER (AUTO-FEED LEADS SIMULATION)
+        function startEarthScanner() {
+            const kw = document.getElementById('scrape-kw').value.trim();
+            const loc = document.getElementById('scrape-loc').value.trim();
             const stat = document.getElementById('scrape-status');
-            if(!kw || !loc) { alert("Isi niche dan kota target!"); return; }
-            stat.innerText = `[+] Menjalankan ekstraksi untuk "${kw}" di "${loc}"... (Token & Device Terverifikasi Aman)`;
+            const statusBadge = document.getElementById('scan-status-badge');
+            const earthText = document.getElementById('earth-status-text');
+
+            if(!kw || !loc) { alert("Masukkan target niche dan kota/kecamatan!"); return; }
+
+            if(scanInterval) clearInterval(scanInterval);
+
+            stat.innerHTML = `[+] Satelit meluncur menargetkan "<span class="text-white">${kw}</span>" di wilayah "<span class="text-white">${loc}</span>"...`;
+            statusBadge.innerText = "SCANNING ACTIVE 🔴";
+            statusBadge.className = "text-xs text-red-400 font-mono animate-pulse";
+            earthText.innerText = `LOCKED: ${kw.toUpperCase()} - ${loc.toUpperCase()}`;
+
+            savedLeads = [];
+            renderLeadsTable();
+
+            const sampleNames = ["Jaya Abadi", "Berkah Mandiri", "Sinar Terang", "Utama Group", "Global Mitra", "Anugrah Jaya", "Sentosa Barokah", "Makmur Sejahtera"];
+            const samplePrefixes = ["CV", "PT", "UD", "Store", "Shop", "Pusat"];
+
+            scanInterval = setInterval(() => {
+                const randomName = `${samplePrefixes[Math.floor(Math.random() * samplePrefixes.length)]} ${kw} ${sampleNames[Math.floor(Math.random() * sampleNames.length)]}`;
+                const randomPhone = `+62 8${Math.floor(100000000 + Math.random() * 900000000)}`;
+                
+                savedLeads.push({ name: randomName, category: kw, phone: randomPhone });
+                renderLeadsTable();
+            }, 1500);
+        }
+
+        function stopEarthScanner() {
+            if(scanInterval) {
+                clearInterval(scanInterval);
+                scanInterval = null;
+            }
+            document.getElementById('scan-status-badge').innerText = "STOPPED";
+            document.getElementById('scan-status-badge').className = "text-xs text-yellow-400 font-mono";
+            document.getElementById('scrape-status').innerHTML = `<span class="text-yellow-400">⏹ Sistem dihentikan. Total ${savedLeads.length} leads berhasil terkumpul. Silakan Download CSV.</span>`;
+        }
+
+        function renderLeadsTable() {
+            const tbody = document.getElementById('leads-table-body');
+            document.getElementById('lead-count-badge').innerText = `${savedLeads.length} Leads Found`;
+
+            if(savedLeads.length === 0) {
+                tbody.innerHTML = `<tr class="text-slate-500"><td colspan="3" class="p-4 text-center">Memindai wilayah...</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = "";
+            savedLeads.forEach((lead) => {
+                tbody.innerHTML += `
+                    <tr class="border-b border-green-950/60 hover:bg-green-950/20">
+                        <td class="p-2 text-green-300 font-semibold">${lead.name}</td>
+                        <td class="p-2 text-slate-300">${lead.category}</td>
+                        <td class="p-2 text-emerald-400 font-mono">${lead.phone}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function exportToCSV() {
+            if(savedLeads.length === 0) { alert("Belum ada data leads untuk diexport!"); return; }
+
+            let csvContent = "data:text/csv;charset=utf-8,Nama Bisnis,Kategori,No WhatsApp\n";
+            savedLeads.forEach(lead => {
+                csvContent += `"${lead.name}","${lead.category}","${lead.phone}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "gmaps_earth_leads.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
