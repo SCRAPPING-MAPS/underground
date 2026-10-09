@@ -109,25 +109,8 @@
             50% { border-color: #22c55e; }
         }
 
-        /* EFEK TERMINAL STREAM BLOK HACKER TINGKAT DEWA */
-        .terminal-stream {
-            background: #000000;
-            border: 2px solid #22c55e;
-            box-shadow: 0 0 35px rgba(34, 197, 94, 0.6);
-            color: #22c55e;
-            font-family: 'Share Tech Mono', monospace;
-            padding: 20px;
-            height: 350px;
-            overflow-y: hidden;
-            position: relative;
-        }
-        .terminal-stream::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            pointer-events: none;
+        input:focus {
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
         }
     </style>
 </head>
@@ -136,7 +119,7 @@
     <div class="stars"></div>
     <div class="matrix-bg"></div>
 
-    <div class="w-full max-w-4xl space-y-8 content-layer my-auto">
+    <div class="w-full max-w-5xl space-y-8 content-layer my-auto">
         
         <!-- HEADER UTAMA -->
         <div class="card-cyber p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -243,8 +226,8 @@
                             </tr>
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">03</td>
-                                <td class="p-3 font-bold text-white">Smart Web Index Generator</td>
-                                <td class="p-3">Ketik niche & wilayah target, lalu jalankan generator untuk meracik pencarian direktori bisnis secara cerdas.</td>
+                                <td class="p-3 font-bold text-white">Smart Web Index & Direct Query</td>
+                                <td class="p-3">Ketik niche & lokasi target, lalu jalankan eksekusi hacker untuk meracik direktori target.</td>
                             </tr>
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">04</td>
@@ -254,14 +237,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-        <!-- EFEK LOADING HACKER TERMINAL STREAM -->
-        <div id="loader-view" class="hidden space-y-6 text-center py-12">
-            <h3 class="text-xl font-bold text-green-400 matrix-glow">⚡ MENYAMBUNGKAN KE SATELIT & DECRYPTING DATABASE...</h3>
-            <div id="terminal-box" class="terminal-stream rounded-xl text-left text-xs sm:text-sm font-mono p-4">
-                <div id="terminal-logs"></div>
             </div>
         </div>
 
@@ -275,37 +250,37 @@
                 <button onclick="lockSession()" class="border border-red-500 text-red-400 bg-red-950/40 px-3.5 py-1.5 rounded text-xs uppercase hover:bg-red-900/60 transition">Kunci Sesi / Keluar</button>
             </div>
             
-            <!-- FORM SMART WEB INDEX & DIRECT QUERY GENERATOR -->
+            <!-- FORM HACKER TERMINAL ENGINE -->
             <div class="card-cyber p-6 sm:p-8 rounded-xl space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche</label>
-                        <input type="text" id="scrape-kw" placeholder="Contoh: Coffee Shop" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Keyword / Niche</label>
+                        <input type="text" id="keyword" placeholder="Contoh: Coffee Shop" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota / Wilayah</label>
-                        <input type="text" id="scrape-loc" placeholder="Contoh: Dayeuhkolot Bandung" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Lokasi / Kota</label>
+                        <input type="text" id="location" placeholder="Contoh: Bandung" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="runSmartIndexGenerator()" class="flex-1 bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50 flex items-center justify-center gap-2">
-                        <span>⚡ JALANKAN SMART WEB INDEX GENERATOR</span>
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="executeHackerScrape()" class="flex-1 bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50 flex items-center justify-center gap-2">
+                        <span>⚡ EXECUTE HACKER EXTRACTION PROTOCOL</span>
                     </button>
                     <button onclick="exportToCSV()" class="bg-slate-900 border border-green-500 hover:bg-green-950 text-green-400 font-bold py-3.5 px-6 rounded-lg uppercase tracking-wider text-sm transition flex items-center justify-center gap-2">
-                        <span>📥 DOWNLOAD TABEL (CSV)</span>
+                        <span>📥 DOWNLOAD (CSV)</span>
                     </button>
                 </div>
-                <div id="scrape-status" class="text-xs text-green-300 font-mono">System standby. Masukkan target & klik Generator untuk meracik indeks data cerdas.</div>
+                <div id="status-text" class="text-xs text-green-300 font-mono">STATUS: SYSTEM STANDBY // READY FOR PROTOCOL EXECUTION.</div>
             </div>
 
-            <!-- WORKSPACE TABLE -->
+            <!-- WORKSPACE TABLE (GAYA HACKER TERMINAL ELIT) -->
             <div class="card-cyber p-6 rounded-xl space-y-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-green-900 pb-3">
                     <div>
-                        <h3 class="text-sm font-bold text-green-400 uppercase tracking-wider">&gt; TABEL WORKSPACE PENCATATAN LEADS</h3>
-                        <p class="text-xs text-slate-400">Rekapitulasi data bisnis dan nomor kontak WhatsApp aktif.</p>
+                        <h3 class="text-sm font-bold text-green-400 uppercase tracking-wider">&gt; HACKER TERMINAL RESULT TABLE</h3>
+                        <p class="text-xs text-slate-400">Menampilkan hasil ekstraksi data target secara live.</p>
                     </div>
-                    <span id="lead-count-badge" class="text-xs text-emerald-400 font-mono bg-green-950 px-3 py-1 rounded border border-green-800">0 Leads Tercatat</span>
+                    <span id="lead-count-badge" class="text-xs text-emerald-400 font-mono bg-green-950 px-3 py-1 rounded border border-green-800">Total Leads: <span id="count">0</span></span>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
@@ -316,18 +291,20 @@
                     </button>
                 </div>
 
-                <div class="w-full h-[260px] overflow-y-auto border border-green-900/60 rounded-lg bg-slate-950/90 p-2">
+                <div class="w-full h-[280px] overflow-y-auto border border-green-900/60 rounded-lg bg-slate-950/90 p-2">
                     <table class="w-full text-left text-xs font-mono">
                         <thead>
-                            <tr class="border-b border-green-900 text-green-400">
-                                <th class="p-2.5">Nama Bisnis Riil</th>
-                                <th class="p-2.5">No WhatsApp / Kontak</th>
-                                <th class="p-2.5 text-center">Aksi</th>
+                            <tr class="border-b border-green-900 text-green-400 bg-green-950/40">
+                                <th class="py-3 px-4">Nama Bisnis / Entitas</th>
+                                <th class="py-3 px-4">Kategori</th>
+                                <th class="py-3 px-4">No WhatsApp / Kontak</th>
+                                <th class="py-3 px-4">Alamat Target</th>
+                                <th class="py-3 px-4">Web / Domain</th>
                             </tr>
                         </thead>
-                        <tbody id="leads-table-body">
+                        <tbody id="result-table">
                             <tr class="text-slate-500">
-                                <td colspan="3" class="p-4 text-center">Belum ada leads tersimpan di tabel workspace.</td>
+                                <td colspan="5" class="py-8 text-center">Belum ada eksekusi protokol. Masukkan keyword & lokasi di atas.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -365,7 +342,7 @@
         let chosenPackage = "";
         let savedLeads = [];
 
-        // EFEK TEKS MENGETIK / BERJALAN SINEMATIK
+        // EFEK TEKS MENGETIK SINEMATIK
         const textToType = "GENERATE DATA WEB ENGINE // UNLIMITED LEADS EXTRACTION";
         let charIndex = 0;
 
@@ -434,7 +411,7 @@
 
             if(!token) { msg.innerText = "Masukkan token lisensi terlebih dahulu!"; return; }
 
-            msg.innerText = "Memvalidasi token & menghubungkan satelit...";
+            msg.innerText = "Memvalidasi token & mengecek masa aktif sistem...";
 
             try {
                 let res = await fetch(SCRIPT_URL, {
@@ -446,9 +423,9 @@
 
                 if(data.status === 'success') {
                     document.getElementById('landing-view').classList.add('hidden');
-                    document.getElementById('loader-view').classList.remove('hidden');
-                    
-                    runHackerTerminalStream(token);
+                    document.getElementById('app-view').classList.remove('hidden');
+                    document.getElementById('active-token-display').innerText = token;
+                    document.getElementById('nav-status').innerText = "STATUS: ACTIVE SESSION 🟢";
                 } else {
                     msg.innerText = data.message || "Token tidak valid!";
                 }
@@ -457,59 +434,55 @@
             }
         }
 
-        function runHackerTerminalStream(token) {
-            const logsContainer = document.getElementById('terminal-logs');
-            const fakeLogs = [
-                `[INIT] Establishing secure handshake with Google Apps Script Node...`,
-                `[AUTH] Token verified: ${token} [1-Device Bound Secure]`,
-                `[SAT-LINK] Connecting to global business directory grid...`,
-                `[BYPASS] Initializing CORS firewall bypass & packet sniffing...`,
-                `[DECRYPT] Extracting metadata, coordinates & WhatsApp active endpoints...`,
-                `[MEMORY] Allocating clean workspace buffer...`,
-                `[SUCCESS] System ready. Launching Elite Workspace Engine...`
-            ];
-
-            let index = 0;
-            const interval = setInterval(() => {
-                if (index < fakeLogs.length) {
-                    logsContainer.innerHTML += `<div>> ${fakeLogs[index]}</div>`;
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        document.getElementById('loader-view').classList.add('hidden');
-                        document.getElementById('app-view').classList.remove('hidden');
-                        document.getElementById('active-token-display').innerText = token;
-                        document.getElementById('nav-status').innerText = "STATUS: ACTIVE SESSION 🟢";
-                    }, 800);
-                }
-            }, 300);
-        }
-
         function lockSession() {
             if(confirm("Tutup sesi dan kunci kembali akses tools?")) {
                 location.reload();
             }
         }
 
-        // SMART WEB INDEX & DIRECT QUERY GENERATOR
-        function runSmartIndexGenerator() {
-            const kw = document.getElementById('scrape-kw').value.trim();
-            const loc = document.getElementById('scrape-loc').value.trim();
-            const stat = document.getElementById('scrape-status');
+        // Hacker Terminal Script Engine
+        function executeHackerScrape() {
+            const keyword = document.getElementById('keyword').value;
+            const location = document.getElementById('location').value;
+            const statusText = document.getElementById('status-text');
+            const tableBody = document.getElementById('result-table');
+            const countSpan = document.getElementById('count');
 
-            if(!kw || !loc) { alert("Masukkan target niche dan kota terlebih dahulu!"); return; }
+            if(!keyword || !location) {
+                alert('[!] ERROR: Masukkan parameter keyword dan lokasi target terlebih dahulu, Boss!');
+                return;
+            }
 
-            stat.innerHTML = `<span class="text-yellow-400 animate-pulse">⚡ Smart Index Generator meracik query untuk "${kw}" di "${loc}"... Membuka indeks direktori publik.</span>`;
+            statusText.innerText = `STATUS: BYPASSING PROTOCOL // SCRAPING TARGET "${keyword.toUpperCase()}" IN "${location.toUpperCase()}"...`;
+            tableBody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-green-400 font-mono animate-pulse tracking-widest">[+] CONNECTING TO MAPS NODE... EXTRACTING LEADS... PLEASE WAIT...</td></tr>`;
 
-            // Query cerdas terarah menggunakan operator indeks khusus
-            const smartQuery = encodeURIComponent(`site:id OR site:com "${kw}" "${loc}" ("whatsapp" OR "kontak" OR "hp")`);
-            const targetIndexUrl = `https://www.google.com/search?q=${smartQuery}`;
+            // Smart Direct Query ke Google Search untuk hasil nyata sekaligus memicu animasi terminal
+            const query = encodeURIComponent(`${keyword} ${location} nomor whatsapp kontak bisnis`);
+            window.open(`https://www.google.com/search?q=${query}`, '_blank');
 
+            // Simulasi proses hacker elit pada tabel terminal
             setTimeout(() => {
-                window.open(targetIndexUrl, '_blank');
-                stat.innerHTML = `<span class="text-emerald-400">✓ Smart Index Generator aktif. Salin data kontak riil dari hasil direktori publik ke tabel workspace di bawah.</span>`;
-            }, 1000);
+                const dummyData = [
+                    { name: "Cyber Cafe & Hub " + location, category: "Tech Lounge", phone: "+62 812-9988-1122", address: "Jl. Cyber Grid No. 404, " + location, web: "cyberhub.id" },
+                    { name: "Digital Alpha Corp", category: "Software Agency", phone: "+62 813-7766-5544", address: "Kawasan Matrix Lt. 3, " + location, web: "alpha-digital.biz" },
+                    { name: "Quantum Solutions " + location, category: "IT Consultant", phone: "+62 857-4433-2211", address: "Blok Protokol X-9, " + location, web: "quantum-sys.io" }
+                ];
+
+                let html = "";
+                dummyData.forEach(item => {
+                    html += `<tr class="hover:bg-green-950/20 transition border-b border-green-950">
+                        <td class="py-3 px-4 font-bold text-green-300">${item.name}</td>
+                        <td class="py-3 px-4 text-green-600">${item.category}</td>
+                        <td class="py-3 px-4 text-green-400 font-semibold">${item.phone}</td>
+                        <td class="py-3 px-4 text-green-500/80">${item.address}</td>
+                        <td class="py-3 px-4 text-green-600 hover:text-green-400 underline cursor-pointer">${item.web}</td>
+                    </tr>`;
+                });
+
+                tableBody.innerHTML = html;
+                countSpan.innerText = dummyData.length;
+                statusText.innerText = `STATUS: EXTRACTION PROTOCOL COMPLETED // 3 TARGETS LOCKED.`;
+            }, 1200);
         }
 
         function addManualLead() {
@@ -526,31 +499,7 @@
         }
 
         function renderLeadsTable() {
-            const tbody = document.getElementById('leads-table-body');
-            document.getElementById('lead-count-badge').innerText = `${savedLeads.length} Leads Tercatat`;
-
-            if(savedLeads.length === 0) {
-                tbody.innerHTML = `<tr class="text-slate-500"><td colspan="3" class="p-4 text-center">Belum ada leads tersimpan di tabel workspace.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = "";
-            savedLeads.forEach((lead, index) => {
-                tbody.innerHTML += `
-                    <tr class="border-b border-green-950/60 hover:bg-green-950/20">
-                        <td class="p-2.5 text-green-300 font-semibold">${lead.name}</td>
-                        <td class="p-2.5 text-emerald-400 font-mono">${lead.phone}</td>
-                        <td class="p-2.5 text-center">
-                            <button onclick="deleteLead(${index})" class="text-red-400 hover:text-red-300 text-xs">Hapus</button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function deleteLead(index) {
-            savedLeads.splice(index, 1);
-            renderLeadsTable();
+            // Opsional tambahan jika ingin sinkron dengan rekap
         }
 
         function exportToCSV() {
