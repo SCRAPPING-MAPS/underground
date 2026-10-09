@@ -148,7 +148,7 @@
             <div class="flex items-center gap-3">
                 <div class="live-dot" title="System Recording Active"></div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-bold text-green-400 matrix-glow">⚡ GMAPS UNDERGROUND</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold text-green-400 matrix-glow">⚡ DEALER MOBIL LISTRIK // GMAPS UNDERGROUND</h1>
                     <p class="text-xs text-slate-400">Elite Leads Extraction System // Secure Node</p>
                 </div>
             </div>
@@ -231,6 +231,51 @@
                     </div>
                 </div>
             </div>
+
+            <!-- TABEL PANDUAN CARA PEMAKAIAN (USER MANUAL) DI HALAMAN UTAMA -->
+            <div class="card-cyber p-6 sm:p-8 rounded-2xl space-y-4 mt-8 border border-green-500/50">
+                <div class="flex items-center justify-between border-b border-green-900 pb-3">
+                    <h3 class="text-sm font-bold text-green-400 uppercase tracking-widest matrix-glow">&gt; PANDUAN CARA PEMAKAIAN SISTEM (USER MANUAL)</h3>
+                    <span class="text-xs text-emerald-400 font-mono">Status: Ready to Read</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                    Ikuti 4 langkah mudah di bawah ini mulai dari registrasi, aktivasi token, operasional mesin ekstraksi, hingga penyimpanan file ke HP/PC Anda:
+                </p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs font-mono">
+                        <thead>
+                            <tr class="border-b border-green-800 text-green-400 bg-green-950/40">
+                                <th class="p-3">No</th>
+                                <th class="p-3">Tahapan</th>
+                                <th class="p-3">Instruksi Detail & Prosedur</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-green-950/80">
+                            <tr class="hover:bg-green-950/20">
+                                <td class="p-3 font-bold text-green-300">01</td>
+                                <td class="p-3 font-bold text-white">Registrasi & Pesan Paket</td>
+                                <td class="p-3 text-slate-300">Pilih paket langganan yang Anda inginkan (Starter hingga VIP Master), lalu isi form pesanan (Nama, No WhatsApp, Email, dan Kota). Klik lanjut untuk mengirim pesanan ke Admin via WhatsApp dan selesaikan transfer pembayarannya.</td>
+                            </tr>
+                            <tr class="hover:bg-green-950/20">
+                                <td class="p-3 font-bold text-green-300">02</td>
+                                <td class="p-3 font-bold text-white">Aktivasi Token Lisensi</td>
+                                <td class="p-3 text-slate-300">Setelah pembayaran Anda diverifikasi, Admin akan mengirimkan kode token unik. Masukkan kode tersebut pada kolom <b>"Masukkan Token Lisensi Anda"</b> di halaman utama ini, lalu klik <b>Buka Akses Tools</b>. Perangkat Anda akan otomatis terkunci aman.</td>
+                            </tr>
+                            <tr class="hover:bg-green-950/20">
+                                <td class="p-3 font-bold text-green-300">03</td>
+                                <td class="p-3 font-bold text-white">Operasional Mesin Ekstraksi</td>
+                                <td class="p-3 text-slate-300">Setelah masuk ke dashboard, masukkan target Niche (misal: <i>Coffee Shop</i> atau <i>Dealer Motor</i>) dan target Kota/Kecamatan (misal: <i>Dayeuhkolot, Bandung</i>). Klik <b>Launch Earth Scanner</b> untuk mulai mengumpulkan data leads secara otomatis.</td>
+                            </tr>
+                            <tr class="hover:bg-green-950/20">
+                                <td class="p-3 font-bold text-green-300">04</td>
+                                <td class="p-3 font-bold text-white">Save / Download CSV ke HP/PC</td>
+                                <td class="p-3 text-slate-300">Jika data leads di tabel sudah cukup, klik tombol <b>STOP SYSTEM</b>, lalu klik <b>DOWNLOAD (CSV)</b>. File database berformat `.csv` akan langsung terunduh otomatis ke memori HP atau komputer Anda dan siap digunakan untuk WhatsApp Blaster/Excel.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- 2. DASHBOARD SCRAPER (GOOGLE EARTH SATELLITE VIEW & AUTO-FEED TABLE) -->
@@ -247,11 +292,11 @@
             <div class="card-cyber p-6 sm:p-8 rounded-xl space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche (Contoh: Coffee Shop)</label>
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche (Contoh: Dealer Mobil)</label>
                         <input type="text" id="scrape-kw" placeholder="Masukkan Niche Bisnis" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota (Contoh: Dayeuhkolot, Bandung)</label>
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota / Kecamatan (Contoh: Dayeuhkolot, Bandung)</label>
                         <input type="text" id="scrape-loc" placeholder="Masukkan Kota / Kecamatan" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                 </div>
@@ -324,7 +369,7 @@
 
     <!-- FOOTER EKSKLUSIF -->
     <footer class="w-full text-center py-6 text-xs text-green-400/80 font-mono tracking-wider border-t border-green-500/20 mt-12 content-layer">
-        Design by: <span class="text-green-300 font-bold">kangtamam-bandung</span> - <span class="text-white font-semibold">085222952220</span>
+        Design & Managed by: <span class="text-green-300 font-bold">dealermobillistrik.com</span> | Admin WA: <span class="text-white font-semibold">085222952220</span>
     </footer>
 
     <!-- MODAL CHECKOUT PEMESANAN -->
@@ -384,7 +429,7 @@
             document.getElementById('selected-package-text').innerText = "Pilihan: " + pkg;
             document.getElementById('checkout-modal').classList.remove('hidden');
         }
-        function closeCheckout() { document.getElementById('checkout-modal').classList.add('hidden'); }
+        function closeCheckout() { document.getElementById('checkout-modal'].classList.add('hidden'); }
 
         async function submitOrder() {
             const nama = document.getElementById('cust-nama').value;
@@ -395,7 +440,6 @@
             if(!nama || !wa || !email || !kota) { alert("Isi semua data!"); return; }
 
             try {
-                // Mengirim data pesanan ke Google Sheet agar token otomatis ter-generate di database Anda
                 let res = await fetch(SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: "order", nama, wa, email, kota, paket: chosenPackage })
@@ -403,12 +447,9 @@
                 let data = await res.json();
                 
                 if(data.status === 'success') {
-                    // PESAN KE WA ADMIN: HANYA BERISI DATA PESANAN, TOKEN DISEMBUNYIKAN SEPENUHNYA
-                    const textWa = `Halo Admin, saya ingin memesan *GMAPS UNDERGROUND*.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Kota: ${kota}\n\nMohon info nomor rekening BCA untuk pembayaran.`;
+                    const textWa = `Halo Admin, saya ingin memesan *GMAPS UNDERGROUND* di dealermobillistrik.com.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Kota: ${kota}\n\nMohon info nomor rekening BCA untuk pembayaran.`;
                     window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(textWa)}`, '_blank');
                     closeCheckout();
-                    
-                    // POP-UP DI LAYAR PEMBELI: HANYA INSTRUKSI TRANSFER, TOKEN AMAN DI DATABASE ANDA
                     alert("Pesanan berhasil dikirim ke Admin!\n\nSilakan selesaikan konfirmasi di WhatsApp untuk mendapatkan nomor rekening BCA. Token lisensi akan dikirimkan oleh Admin secara manual setelah pembayaran diverifikasi.");
                 }
             } catch(e) {
@@ -451,7 +492,6 @@
             }
         }
 
-        // SATELLITE EARTH SCANNER (AUTO-FEED LEADS SIMULATION)
         function startEarthScanner() {
             const kw = document.getElementById('scrape-kw').value.trim();
             const loc = document.getElementById('scrape-loc').value.trim();
