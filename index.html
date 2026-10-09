@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEB UNDERGROUND // Elite Extraction Engine</title>
+    <title>WEB UNDERGROUND // Generate Data Web Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600;700&display=swap');
@@ -15,7 +15,7 @@
             overflow-x: hidden;
         }
 
-        /* EFEK BINTANG DI LATAR BELAKANG */
+        /* EFEK KELIP BINTANG DI LATAR BELAKANG */
         .stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -24,7 +24,9 @@
                 radial-gradient(1px 1px at 20px 30px, #22c55e, rgba(0,0,0,0)),
                 radial-gradient(1.5px 1.5px at 40px 70px, #ffffff, rgba(0,0,0,0)),
                 radial-gradient(2px 2px at 50px 160px, #22c55e, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 90px 40px, #10b981, rgba(0,0,0,0));
+                radial-gradient(1px 1px at 90px 40px, #10b981, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #22c55e, rgba(0,0,0,0));
             background-repeat: repeat;
             background-size: 250px 250px;
             opacity: 0.35;
@@ -38,15 +40,15 @@
             100% { opacity: 0.2; transform: translateY(0); }
         }
 
-        /* LATAR BELAKANG MATRIX STREAM ANIMASI KODE BERTERBANGAN */
+        /* LATAR BELAKANG HACKER MATRIX STREAM & SATELLITE RADAR GIF */
         .matrix-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(2, 4, 10, 0.85), rgba(2, 4, 10, 0.92)), 
+            background: linear-gradient(rgba(2, 4, 10, 0.82), rgba(2, 4, 10, 0.90)), 
                         url('https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif') center/cover no-repeat;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.35;
+            opacity: 0.3;
         }
 
         .content-layer {
@@ -55,10 +57,10 @@
         }
 
         .matrix-glow { 
-            text-shadow: 0 0 15px rgba(34, 197, 94, 0.8), 0 0 30px rgba(16, 185, 129, 0.5); 
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.9), 0 0 30px rgba(16, 185, 129, 0.6); 
         }
 
-        /* KILATAN CAHAYA PRO */
+        /* EFEK KILATAN CAHAYA TEKS SINEMATIK */
         .shimmer-text {
             background: linear-gradient(
                 90deg, 
@@ -80,6 +82,7 @@
             100% { background-position: -250% center; }
         }
 
+        /* KOTAK SECTION CYBER NEON */
         .card-cyber { 
             background: rgba(10, 15, 30, 0.92); 
             border: 1.5px solid #22c55e; 
@@ -99,23 +102,7 @@
             box-shadow: 0 0 25px rgba(74, 222, 128, 0.4), inset 0 0 15px rgba(74, 222, 128, 0.2);
         }
 
-        /* INDIKATOR KLIP NYALA MERAH (RECORDER) */
-        .rec-dot {
-            width: 14px;
-            height: 14px;
-            background-color: #ef4444;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 15px #ef4444, 0 0 30px #ef4444, 0 0 45px #dc2626;
-            animation: pulse-red 1s infinite;
-        }
-
-        @keyframes pulse-red {
-            0% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.9); }
-            70% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-            100% { transform: scale(0.9); opacity: 0.8; box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-
+        /* KURSOR KETIK SINEMATIK */
         .typing-cursor {
             border-right: 3px solid #22c55e;
             animation: blink-cursor 0.75s step-end infinite;
@@ -125,23 +112,25 @@
             from, to { border-color: transparent }
             50% { border-color: #22c55e; }
         }
+
+        input:focus {
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+        }
     </style>
 </head>
 <body class="min-h-screen p-4 sm:p-8 flex flex-col items-center justify-between">
 
+    <!-- EFEK BINTANG & KODE BERTERBANGAN DI BACKGROUND -->
     <div class="stars"></div>
     <div class="matrix-bg"></div>
 
-    <div class="w-full max-w-5xl space-y-8 content-layer my-auto">
+    <div class="w-full max-w-4xl space-y-8 content-layer my-auto">
         
-        <!-- HEADER UTAMA -->
+        <!-- HEADER / NAVIGASI -->
         <div class="card-cyber p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="rec-dot" title="Secure Recording Active"></div>
-                <div>
-                    <h1 class="text-xl sm:text-2xl font-bold text-green-400 matrix-glow">⚡ kangtamam.bdg // WEB UNDERGROUND</h1>
-                    <p class="text-xs text-slate-400">Elite Smart Web Index & License Security Node</p>
-                </div>
+            <div>
+                <h1 class="text-xl sm:text-2xl font-bold text-green-400 matrix-glow">⚡ WEB UNDERGROUND // GENERATE DATA WEB ENGINE</h1>
+                <p class="text-xs text-slate-400">Elite Satellite Leads Extraction & Secure Node</p>
             </div>
             <div id="nav-status" class="text-xs text-green-300 font-mono bg-green-950/60 px-3 py-1.5 rounded border border-green-500/50">
                 STATUS: SESSION LOCKED 🔒
@@ -154,12 +143,12 @@
                 <div class="inline-block bg-green-950 border border-green-500 text-green-400 text-xs px-4 py-1.5 rounded-full tracking-widest uppercase shadow-lg">
                     ⚡ 1 LICENSE = 1 DEVICE SECURE BINDING
                 </div>
-                <!-- TEKS BERJALAN / MENGETIK DRAMATIS -->
-                <h2 id="typed-heading" class="text-3xl sm:text-5xl font-bold matrix-glow tracking-wider min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">
+                <!-- TEKS BERJALAN SINEMATIK GAYA HACKER TINGKAT DEWA -->
+                <h2 id="typed-heading" class="text-2xl sm:text-4xl font-bold matrix-glow tracking-wider min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">
                     <span id="typed-text" class="typing-cursor text-green-400"></span>
                 </h2>
                 <p class="text-slate-300 text-sm max-w-xl mx-auto">
-                    Masukkan token lisensi eksklusif Anda di bawah untuk mengaktifkan mesin, atau pilih paket langganan VIP di bawah ini.
+                    Masukkan token lisensi eksklusif Anda di bawah untuk mengaktifkan sistem, atau pilih paket langganan VIP di bawah ini.
                 </p>
             </div>
 
@@ -174,12 +163,10 @@
             </div>
 
             <!-- GRID PILIHAN PAKET EKSKLUSIF -->
-            <div class="pt-6 border-t border-green-500/30 space-y-4">
-                <div class="flex items-center justify-center gap-2">
-                    <h3 class="text-center text-xs uppercase text-green-300 tracking-widest matrix-glow font-bold">-- PILIHAN LISENSI EKSKLUSIF --</h3>
-                </div>
-
+            <div class="pt-6 border-t border-green-500/30">
+                <h3 class="text-center text-xs uppercase text-green-300 mb-6 tracking-widest matrix-glow">-- PILIHAN LISENSI EKSKLUSIF --</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Starter -->
                     <div class="card-cyber p-5 rounded-xl flex flex-col justify-between">
                         <div>
                             <div class="text-xs text-green-400 font-bold uppercase">STARTER</div>
@@ -188,6 +175,7 @@
                         </div>
                         <button onclick="openCheckout('Paket 1 Bulan (Rp 30.000)')" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-2.5 rounded text-xs uppercase tracking-wider transition">AMBIL PAKET</button>
                     </div>
+                    <!-- Popular -->
                     <div class="card-cyber p-5 rounded-xl flex flex-col justify-between border-green-400">
                         <div class="text-xs bg-green-950 text-green-300 border border-green-500/40 p-1 rounded text-center mb-2 font-bold">HEMAT 15%</div>
                         <div>
@@ -197,6 +185,7 @@
                         </div>
                         <button onclick="openCheckout('Paket 3 Bulan (Rp 75.000)')" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-2.5 rounded text-xs uppercase tracking-wider transition">AMBIL PAKET</button>
                     </div>
+                    <!-- Pro -->
                     <div class="card-cyber p-5 rounded-xl flex flex-col justify-between">
                         <div>
                             <div class="text-xs text-green-400 font-bold uppercase">PRO</div>
@@ -205,6 +194,7 @@
                         </div>
                         <button onclick="openCheckout('Paket 6 Bulan (Rp 140.000)')" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-2.5 rounded text-xs uppercase tracking-wider transition">AMBIL PAKET</button>
                     </div>
+                    <!-- VIP Master -->
                     <div class="card-cyber-vip p-5 rounded-xl flex flex-col justify-between">
                         <div class="text-xs bg-green-600 text-slate-950 p-1 rounded text-center mb-2 font-bold uppercase">BEST VALUE</div>
                         <div>
@@ -217,11 +207,11 @@
                 </div>
             </div>
 
-            <!-- PANDUAN CARA PEMAKAIAN -->
-            <div class="card-cyber p-6 sm:p-8 rounded-2xl space-y-4 mt-8 border border-green-500/50">
-                <h3 class="text-base font-bold text-green-400 tracking-wider matrix-glow">&gt; PANDUAN OPERASIONAL & SMART INDEX GENERATOR</h3>
+            <!-- PANDUAN CARA PAKAI TOOLS (BAGIAN BAWAH) -->
+            <div class="card-cyber p-6 sm:p-8 rounded-2xl space-y-4 border border-green-500/50 mt-8">
+                <h3 class="text-base font-bold text-green-400 tracking-wider matrix-glow">&gt; PANDUAN CARA PAKAI TOOLS</h3>
                 <p class="text-sm text-slate-200">
-                    Sistem menggunakan metode <b>Smart Web Index & Direct Query Generator</b>. Ikuti langkah di bawah ini:
+                    Ikuti langkah operasional di bawah ini untuk mengumpulkan database leads secara optimal dan bersih:
                 </p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm font-mono">
@@ -229,29 +219,29 @@
                             <tr class="border-b border-green-700 text-green-300 bg-green-950/60">
                                 <th class="p-3 w-16 text-center">No</th>
                                 <th class="p-3">Tahapan</th>
-                                <th class="p-3">Prosedur Kerja</th>
+                                <th class="p-3">Penjelasan Prosedur</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-green-900/40 text-slate-300">
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">01</td>
-                                <td class="p-3 font-bold text-white">Aktivasi Token</td>
-                                <td class="p-3">Masukkan token lisensi sah untuk mengunci sesi perangkat Anda.</td>
+                                <td class="p-3 font-bold text-white">Dapatkan Token Lisensi</td>
+                                <td class="p-3">Pilih paket langganan dan lakukan pemesanan untuk mendapatkan token unik terverifikasi dari Admin.</td>
                             </tr>
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">02</td>
-                                <td class="p-3 font-bold text-white">Smart Query Generator</td>
-                                <td class="p-3">Ketik Niche & Kota/Wilayah target, klik tombol generator untuk meracik pencarian indeks direktori bisnis.</td>
+                                <td class="p-3 font-bold text-white">Masukkan Token & Aktifkan Sesi</td>
+                                <td class="p-3">Ketik token Anda di kolom login atas, lalu klik <b>Buka Akses Tools</b> untuk mengunci perangkat.</td>
                             </tr>
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">03</td>
-                                <td class="p-3 font-bold text-white">Input ke Workspace Table</td>
-                                <td class="p-3">Catat dan masukkan nama bisnis serta nomor WhatsApp aktif ke dalam tabel database.</td>
+                                <td class="p-3 font-bold text-white">Cari Niche & Wilayah Target</td>
+                                <td class="p-3">Ketik kata kunci bisnis (misal: <i>Coffee Shop</i>) dan kota target (misal: <i>Bandung</i>), lalu klik buka direktori.</td>
                             </tr>
                             <tr>
                                 <td class="p-3 text-center text-green-400 font-bold">04</td>
-                                <td class="p-3 font-bold text-white">Download CSV</td>
-                                <td class="p-3">Unduh hasil rekapitulasi data bersih langsung ke HP atau PC Anda.</td>
+                                <td class="p-3 font-bold text-white">Simpan & Download CSV</td>
+                                <td class="p-3">Catat nama usaha dan nomor kontak aktif ke tabel workspace, lalu unduh file CSV Anda.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -259,46 +249,45 @@
             </div>
         </div>
 
-        <!-- 2. DASHBOARD APLIKASI (SMART WEB INDEX & WORKSPACE) -->
+        <!-- 2. DASHBOARD APLIKASI & WORKSPACE (TERKUNCI EKSKLUSIF) -->
         <div id="app-view" class="hidden space-y-6">
             <div class="card-cyber p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-lg font-bold text-green-400 matrix-glow">GMAPS UNDERGROUND // SMART INDEX WORKSPACE</h2>
+                    <h2 class="text-lg font-bold text-green-400 matrix-glow">WEB UNDERGROUND // CORE ENGINE</h2>
                     <p class="text-xs text-slate-300">Token Aktif: <span id="active-token-display" class="text-green-300 font-bold"></span> | Status: <span class="text-emerald-400 font-bold">SECURE & VERIFIED</span></p>
                 </div>
                 <button onclick="lockSession()" class="border border-red-500 text-red-400 bg-red-950/40 px-3.5 py-1.5 rounded text-xs uppercase hover:bg-red-900/60 transition">Kunci Sesi / Keluar</button>
             </div>
             
-            <!-- FORM SMART WEB INDEX GENERATOR -->
-            <div class="card-cyber p-6 sm:p-8 rounded-2xl space-y-6">
+            <!-- FORM PENCARIAN DIREKTORI PUBLIK -->
+            <div class="card-cyber p-6 sm:p-8 rounded-xl space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche (Contoh: Cafe / Konveksi)</label>
-                        <input type="text" id="scrape-kw" placeholder="Masukkan Niche Bisnis" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Niche</label>
+                        <input type="text" id="scrape-kw" placeholder="Contoh: Coffee Shop" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Wilayah (Contoh: Dayeuhkolot Bandung)</label>
-                        <input type="text" id="scrape-loc" placeholder="Masukkan Kota / Kecamatan" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
+                        <label class="block text-xs uppercase text-green-400 mb-1 font-bold">Target Kota / Wilayah</label>
+                        <input type="text" id="scrape-loc" placeholder="Contoh: Dayeuhkolot Bandung" class="w-full bg-slate-950 border border-green-600 rounded-lg px-4 py-2.5 text-green-400 text-sm focus:outline-none focus:border-green-400">
                     </div>
                 </div>
-                
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button onclick="runSmartIndexGenerator()" class="flex-1 bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50 flex items-center justify-center gap-2">
-                        <span>⚡ JALANKAN SMART INDEX GENERATOR</span>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="openPublicSearchDirectory()" class="flex-1 bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3.5 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50 flex items-center justify-center gap-2">
+                        <span>🔍 BUKA DIREKTORI PENCARIAN PUBLIK</span>
                     </button>
                     <button onclick="exportToCSV()" class="bg-slate-900 border border-green-500 hover:bg-green-950 text-green-400 font-bold py-3.5 px-6 rounded-lg uppercase tracking-wider text-sm transition flex items-center justify-center gap-2">
                         <span>📥 DOWNLOAD TABEL (CSV)</span>
                     </button>
                 </div>
-                <div id="scrape-status" class="text-xs text-green-300 font-mono">System standby. Masukkan target & klik Generator untuk meracik indeks data.</div>
+                <div id="scrape-status" class="text-xs text-green-300 font-mono">Tip: Buka direktori publik, salin data riil, lalu masukkan instan ke tabel workspace di bawah.</div>
             </div>
 
             <!-- WORKSPACE TABLE -->
-            <div class="card-cyber p-6 rounded-2xl space-y-4">
+            <div class="card-cyber p-6 rounded-xl space-y-4">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-green-900 pb-3">
                     <div>
-                        <h3 class="text-sm font-bold text-green-400 uppercase tracking-wider">&gt; WORKSPACE PENCATATAN DATA RIIL</h3>
-                        <p class="text-xs text-slate-400">Masukkan data hasil indeks publik ke dalam tabel database.</p>
+                        <h3 class="text-sm font-bold text-green-400 uppercase tracking-wider">&gt; TABEL WORKSPACE PENCATATAN LEADS</h3>
+                        <p class="text-xs text-slate-400">Rekapitulasi data bisnis dan nomor kontak WhatsApp aktif.</p>
                     </div>
                     <span id="lead-count-badge" class="text-xs text-emerald-400 font-mono bg-green-950 px-3 py-1 rounded border border-green-800">0 Leads Tercatat</span>
                 </div>
@@ -311,7 +300,7 @@
                     </button>
                 </div>
 
-                <div class="w-full h-[280px] overflow-y-auto border border-green-900/60 rounded-lg bg-slate-950/90 p-2">
+                <div class="w-full h-[260px] overflow-y-auto border border-green-900/60 rounded-lg bg-slate-950/90 p-2">
                     <table class="w-full text-left text-xs font-mono">
                         <thead>
                             <tr class="border-b border-green-900 text-green-400">
@@ -337,7 +326,7 @@
         Design & Managed by: <span class="text-green-300 font-bold">kangtamam.bdg - dealermobillistrik.com</span> | Admin WA: <span class="text-white font-semibold">085222952220</span>
     </footer>
 
-    <!-- MODAL CHECKOUT -->
+    <!-- MODAL CHECKOUT PEMESANAN -->
     <div id="checkout-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
         <div class="card-cyber p-6 sm:p-8 rounded-2xl w-full max-w-md relative space-y-4 shadow-2xl">
             <button onclick="closeCheckout()" class="absolute top-4 right-4 text-slate-400 hover:text-green-400 text-lg">✕</button>
@@ -349,7 +338,7 @@
                 <input type="email" id="cust-email" placeholder="Email Aktif" class="w-full bg-slate-950 border border-green-600 rounded-lg px-3.5 py-2.5 text-green-400 text-sm">
                 <input type="text" id="cust-kota" placeholder="Kota Domisili" class="w-full bg-slate-950 border border-green-600 rounded-lg px-3.5 py-2.5 text-green-400 text-sm">
             </div>
-            <button onclick="submitOrder()" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50">LANJUT KONFIRMASI PESANAN ⚡</button>
+            <button onclick="submitOrder()" class="w-full bg-green-600 hover:bg-green-500 text-slate-950 font-bold py-3 rounded-lg uppercase tracking-wider text-sm transition shadow-lg shadow-green-900/50">LANJUT TRANSFER BCA & AMBIL TOKEN ⚡</button>
         </div>
     </div>
 
@@ -360,15 +349,15 @@
         let chosenPackage = "";
         let savedLeads = [];
 
-        // EFEK KETIK / TEKS BERJALAN JUDUL
-        const textToType = "SMART WEB INDEX & LEADS EXTRACTION ENGINE";
+        // EFEK TEKS MENGETIK / BERJALAN SINEMATIK SAAT PERTAMA KALI MASUK
+        const textToType = "GENERATE DATA WEB ENGINE // UNLIMITED LEADS EXTRACTION";
         let charIndex = 0;
 
         function typeWriter() {
             if (charIndex < textToType.length) {
                 document.getElementById("typed-text").innerHTML += textToType.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 100);
+                setTimeout(typeWriter, 85);
             } else {
                 document.getElementById("typed-text").classList.remove("typing-cursor");
                 document.getElementById("typed-heading").classList.add("shimmer-text");
@@ -376,7 +365,7 @@
         }
 
         window.onload = function() {
-            setTimeout(typeWriter, 300);
+            setTimeout(typeWriter, 400);
         }
 
         function getDeviceId() {
@@ -412,10 +401,10 @@
                 let data = await res.json();
                 
                 if(data.status === 'success') {
-                    const textWa = `Halo Admin, saya ingin memesan *GMAPS UNDERGROUND*.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Kota: ${kota}\n\nMohon info nomor rekening BCA untuk pembayaran.`;
+                    const textWa = `Halo Admin, saya sudah pesan *WEB UNDERGROUND*.\n\n- Paket: ${chosenPackage}\n- Nama: ${nama}\n- Token Otomatis: ${data.token}\n\nMohon info nomor rekening BCA untuk transfer.`;
                     window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(textWa)}`, '_blank');
                     closeCheckout();
-                    alert("Pesanan berhasil dikirim ke Admin!\n\nSilakan selesaikan konfirmasi di WhatsApp untuk mendapatkan nomor rekening BCA. Token lisensi akan dikirimkan oleh Admin secara manual setelah pembayaran diverifikasi.");
+                    alert("Pesanan tercatat! Token lisensi unik Anda adalah: " + data.token + "\n\nSelesaikan transfer ke BCA, lalu masukkan token tersebut di halaman utama untuk masuk.");
                 }
             } catch(e) {
                 alert("Gagal memproses pesanan ke server.");
@@ -458,24 +447,18 @@
             }
         }
 
-        // SMART WEB INDEX & DIRECT QUERY GENERATOR
-        function runSmartIndexGenerator() {
+        function openPublicSearchDirectory() {
             const kw = document.getElementById('scrape-kw').value.trim();
             const loc = document.getElementById('scrape-loc').value.trim();
             const stat = document.getElementById('scrape-status');
 
-            if(!kw || !loc) { alert("Masukkan target niche dan wilayah terlebih dahulu!"); return; }
+            if(!kw || !loc) { alert("Masukkan target niche dan kota terlebih dahulu!"); return; }
 
-            stat.innerHTML = `<span class="text-yellow-400 animate-pulse">⚡ Meracik Smart Index Query untuk "${kw}" di "${loc}"... Membuka indeks direktori publik.</span>`;
-
-            // Query cerdas langsung mengarahkan ke indeks direktori bisnis terverifikasi yang memuat kontak riil
-            const smartQuery = encodeURIComponent(`site:id OR site:com "${kw}" "${loc}" ("whatsapp" OR "kontak" OR "hp")`);
-            const targetIndexUrl = `https://www.google.com/search?q=${smartQuery}`;
-
-            setTimeout(() => {
-                window.open(targetIndexUrl, '_blank');
-                stat.innerHTML = `<span class="text-emerald-400">✓ Smart Index Generator aktif. Salin data kontak riil dari hasil direktori ke tabel di bawah.</span>`;
-            }, 1000);
+            const query = encodeURIComponent(`${kw} ${loc} nomor whatsapp kontak bisnis`);
+            const searchUrl = `https://www.google.com/search?q=${query}`;
+            
+            window.open(searchUrl, '_blank');
+            stat.innerHTML = `<span class="text-emerald-400">✓ Direktori publik terbuka. Salin data riil dan masukkan ke tabel workspace di bawah.</span>`;
         }
 
         function addManualLead() {
@@ -530,7 +513,7 @@
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "gmaps_smart_leads.csv");
+            link.setAttribute("download", "web_underground_leads.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
