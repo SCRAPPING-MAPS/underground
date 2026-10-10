@@ -120,6 +120,45 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* EFEK GELOMBANG RESONANSI GRAFIK / DENYUT JANTUNG (PULSE EKG) */
+        .pulse-container {
+            position: relative;
+            width: 100%;
+            height: 45px;
+            background: #000000;
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        .pulse-line {
+            position: absolute;
+            top: 0; left: 0;
+            width: 200%; height: 100%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 255, 102, 0.15) 41px);
+            display: flex;
+            align-items: center;
+        }
+        .pulse-svg {
+            width: 100%;
+            height: 35px;
+            stroke: #00ff66;
+            stroke-width: 2;
+            fill: none;
+            filter: drop-shadow(0 0 8px #00ff66);
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        .active-pulse .pulse-svg {
+            animation: ecg-draw 1.5s linear infinite;
+        }
+        @keyframes ecg-draw {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: #020408; }
         ::-webkit-scrollbar-thumb { background: #00ff66; border-radius: 3px; }
@@ -215,7 +254,7 @@
             </div>
         </div>
 
-        <!-- 2. DASHBOARD APLIKASI & WORKSPACE (FOKUS UTAMA HALAMAN EKSEKUSI 650PX) -->
+        <!-- 2. DASHBOARD APLIKASI & WORKSPACE (650PX) -->
         <div id="app-view" class="hidden space-y-3">
             <div class="electric-border p-3 rounded-xl flex items-center justify-between gap-3">
                 <div>
@@ -280,20 +319,6 @@
                     </div>
                 </div>
 
-                <!-- RUANG KOLOM URL GAMBAR / BANNER PREVIEW (REQUEST BOSS) -->
-                <div class="bg-slate-950/90 p-2.5 rounded-lg border border-green-800/80 space-y-2">
-                    <label class="block text-[10px] uppercase text-green-400 font-bold">🖼️ Masukkan Link Gambar / Banner Target (Opsional)</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="custom-image-url" placeholder="https://media.tenor.com/8Juj0k-1L4AAAAAM/radar-love-search.gif" class="flex-1 bg-slate-950 border border-green-700 rounded-lg px-2.5 py-1 text-[11px] text-green-300 focus:outline-none focus:border-green-400">
-                        <button onclick="loadCustomBanner()" class="bg-green-900 border border-green-500 hover:bg-green-800 text-green-300 font-bold px-3 py-1 rounded-lg text-[10px] uppercase transition">Load Banner</button>
-                    </div>
-                    <!-- Area Tampil Gambar / Banner -->
-                    <div id="banner-preview-container" class="hidden w-full h-32 rounded-lg border border-green-600 overflow-hidden bg-slate-900 flex items-center justify-center relative">
-                        <img id="banner-img" src="" alt="Target Preview" class="w-full h-full object-cover">
-                        <span class="absolute bottom-1 right-2 bg-slate-950/80 px-2 py-0.5 rounded text-[9px] text-green-400 border border-green-700">TARGET NODE PREVIEW</span>
-                    </div>
-                </div>
-
                 <div class="flex flex-col sm:flex-row gap-2 pt-0.5">
                     <button onclick="executeHighVoltageScrape()" class="flex-1 electric-button py-2.5 rounded-lg uppercase tracking-wider text-[11px] transition flex items-center justify-center gap-1.5">
                         <span>⚡ EXECUTE HIGH-VOLTAGE EXTRACTION</span>
@@ -301,6 +326,21 @@
                     <button onclick="exportToCSV()" class="bg-slate-900 border border-green-500 hover:bg-green-950 text-green-400 font-bold py-2.5 px-4 rounded-lg uppercase tracking-wider text-[11px] transition flex items-center justify-center gap-1">
                         <span>📥 DOWNLOAD (CSV)</span>
                     </button>
+                </div>
+
+                <!-- EFEK GELOMBANG RESONANSI GRAFIK / DENYUT JANTUNG (REQUEST BOSS) -->
+                <div class="space-y-1">
+                    <div class="flex justify-between items-center text-[9px] text-green-400 font-mono px-1">
+                        <span>// SYSTEM RESONANCE MONITOR</span>
+                        <span id="pulse-status-label" class="text-slate-500">STANDBY</span>
+                    </div>
+                    <div id="resonance-box" class="pulse-container">
+                        <div class="pulse-line">
+                            <svg class="pulse-svg" viewBox="0 0 500 50" preserveAspectRatio="none">
+                                <path d="M0,25 L50,25 L70,10 L90,40 L110,25 L150,25 L170,5 L190,45 L210,25 L250,25 L270,15 L290,35 L310,25 L350,25 L370,8 L390,42 L410,25 L450,25 L470,10 L490,40 L500,25" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="status-text" class="text-[10px] text-green-300 font-mono pt-1 border-t border-green-900/60">STATUS: SYSTEM ARMED // READY FOR HIGH-VOLTAGE SIMULATION.</div>
@@ -401,18 +441,6 @@
             return deviceId;
         }
 
-        function loadCustomBanner() {
-            const url = document.getElementById('custom-image-url').value.trim();
-            const container = document.getElementById('banner-preview-container');
-            const img = document.getElementById('banner-img');
-            if(url) {
-                img.src = url;
-                container.classList.remove('hidden');
-            } else {
-                container.classList.add('hidden');
-            }
-        }
-
         function openCheckout(pkg) {
             chosenPackage = pkg;
             document.getElementById('selected-package-text').innerText = "Pilihan: " + pkg;
@@ -483,19 +511,25 @@
             }
         }
 
-        // EKSEKUSI SCRAPE DENGAN LOG TERMINAL & STREAMING SATU PERSATU YANG SANGAT DRAMATIS
+        // EKSEKUSI SCRAPE DENGAN EFEK GELOMBANG RESONANSI & STREAMING SATU PERSATU
         async function executeHighVoltageScrape() {
             const keyword = document.getElementById('keyword').value.trim();
             const city = document.getElementById('target-city').value;
             const count = parseInt(document.getElementById('data-count').value);
             const statusText = document.getElementById('status-text');
+            const resonanceBox = document.getElementById('resonance-box');
+            const pulseLabel = document.getElementById('pulse-status-label');
 
             if(!keyword) {
                 alert('[!] Masukkan Target Keyword / Niche terlebih dahulu, Boss!');
                 return;
             }
 
-            // Simulasi Log Terminal Dramatis
+            // Nyalakan Efek Gelombang Resonansi Berdenyut
+            resonanceBox.classList.add('active-pulse');
+            pulseLabel.innerText = "RESONANCE ACTIVE ⚡";
+            pulseLabel.className = "text-green-400 font-bold animate-pulse";
+
             statusText.innerText = `⚡ [ROBOT LOG]: Connecting to Maps Node "${city.toUpperCase()}" for "${keyword.toUpperCase()}"...`;
             document.getElementById('result-table').innerHTML = `<tr><td colspan="6" class="py-6 text-center text-green-400 font-mono animate-pulse tracking-widest text-[11px]">[⚡ ROBOT ACTIVE]: BYPASSING API NODES & PARSING DEEP DATA...</td></tr>`;
 
@@ -512,7 +546,6 @@
                     document.getElementById('result-table').innerHTML = "";
                     
                     let index = 0;
-                    // Jeda waktu masuk data dibuat perlahan agar terlihat sangat natural & real
                     let interval = setInterval(() => {
                         if(index < extractedLeads.length) {
                             let item = extractedLeads[index];
@@ -527,24 +560,30 @@
                             document.getElementById('result-table').insertAdjacentHTML('beforeend', rowHTML);
                             document.getElementById('count').innerText = index + 1;
                             
-                            // Update status log bertahap
                             statusText.innerText = `⚡ [ROBOT EXTRACTING]: Captured lead #${index + 1} -> ${item.nama} (${item.kota})`;
                             
-                            // Auto scroll tabel ke bawah otomatis mengikuti data masuk
                             let tableContainer = document.querySelector('.overflow-y-auto');
                             tableContainer.scrollTop = tableContainer.scrollHeight;
 
                             index++;
                         } else {
                             clearInterval(interval);
+                            // Matikan efek gelombang setelah selesai
+                            resonanceBox.classList.remove('active-pulse');
+                            pulseLabel.innerText = "LOCKED 100%";
+                            pulseLabel.className = "text-emerald-400 font-bold";
                             statusText.innerText = `⚡ EXTRACTION SUCCESS // ${extractedLeads.length} LEADS LOCKED & READY FOR CONTENT!`;
                         }
-                    }, 80); // Kecepatan interval 80ms per baris (sangat pas untuk rekaman video)
+                    }, 80);
 
                 } else {
+                    resonanceBox.classList.remove('active-pulse');
+                    pulseLabel.innerText = "ERROR";
                     alert("Gagal menarik data simulasi.");
                 }
             } catch(e) {
+                resonanceBox.classList.remove('active-pulse');
+                pulseLabel.innerText = "ERROR";
                 alert("Terjadi kesalahan koneksi server.");
             }
         }
