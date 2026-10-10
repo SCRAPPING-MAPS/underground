@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        /* EFEK KILATAN PETIR DI LATAR BELAKANG */
+        /* EFEK KILATAN PETIR LATAR BELAKANG STANDBY */
         @keyframes lightning {
             0%, 90%, 94%, 98%, 100% { opacity: 0; filter: drop-shadow(0 0 0px rgba(0,255,102,0)); }
             92% { opacity: 0.15; filter: drop-shadow(0 0 25px rgba(0,255,102,0.8)); background-color: rgba(0, 255, 100, 0.08); }
@@ -29,6 +29,21 @@
             pointer-events: none;
             z-index: 1;
             animation: lightning 5s infinite steps(1);
+        }
+
+        /* EFEK KILATAN PETIR EXTRA DRAMATIS SAAT GENERATE BERJALAN */
+        @keyframes thunder-active {
+            0%, 100% { background-color: rgba(2, 4, 8, 0.95); box-shadow: inset 0 0 0px rgba(0,255,102,0); }
+            15% { background-color: rgba(0, 255, 102, 0.25); box-shadow: inset 0 0 80px rgba(0,255,102,0.8); }
+            18% { background-color: rgba(2, 4, 8, 0.95); }
+            45% { background-color: rgba(255, 255, 255, 0.2); box-shadow: inset 0 0 100px rgba(255,255,255,0.9); }
+            48% { background-color: rgba(2, 4, 8, 0.95); }
+            75% { background-color: rgba(0, 255, 102, 0.3); box-shadow: inset 0 0 90px rgba(0,255,102,0.9); }
+            78% { background-color: rgba(2, 4, 8, 0.95); }
+        }
+
+        .storm-active {
+            animation: thunder-active 0.8s infinite steps(1);
         }
 
         .cyber-grid {
@@ -120,7 +135,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* EFEK GELOMBANG RESONANSI GRAFIK / DENYUT JANTUNG (PULSE EKG) */
+        /* EFEK GELOMBANG RESONANSI GRAFIK / EKG */
         .pulse-container {
             position: relative;
             width: 100%;
@@ -164,7 +179,7 @@
         ::-webkit-scrollbar-thumb { background: #00ff66; border-radius: 3px; }
     </style>
 </head>
-<body class="min-h-screen p-3 flex flex-col items-center justify-between">
+<body id="main-body" class="min-h-screen p-3 flex flex-col items-center justify-between">
 
     <div class="lightning-overlay"></div>
     <div class="cyber-grid"></div>
@@ -328,7 +343,7 @@
                     </button>
                 </div>
 
-                <!-- EFEK GELOMBANG RESONANSI GRAFIK / DENYUT JANTUNG (REQUEST BOSS) -->
+                <!-- EFEK GELOMBANG RESONANSI GRAFIK / EKG -->
                 <div class="space-y-1">
                     <div class="flex justify-between items-center text-[9px] text-green-400 font-mono px-1">
                         <span>// SYSTEM RESONANCE MONITOR</span>
@@ -351,7 +366,7 @@
                 <div class="flex items-center justify-between gap-2 border-b border-green-900 pb-1.5">
                     <div>
                         <h3 class="text-[11px] font-bold text-green-400 uppercase tracking-wider">&gt; LIVE EXTRACTION STREAM TABLE</h3>
-                        <p class="text-[9px] text-slate-400">Data masuk otomatis bertahap satu per satu (Robot Mode).</p>
+                        <p class="text-[9px] text-slate-400">Data masuk bertahap perlahan (Drama Visual Tontonan Menarik).</p>
                     </div>
                     <span id="lead-count-badge" class="text-[10px] text-emerald-400 font-mono bg-green-950 px-2 py-0.5 rounded border border-green-800">Leads: <span id="count">0</span></span>
                 </div>
@@ -511,7 +526,7 @@
             }
         }
 
-        // EKSEKUSI SCRAPE DENGAN EFEK GELOMBANG RESONANSI & STREAMING SATU PERSATU
+        // EKSEKUSI DENGAN DELAY PERLAMBAT & EFEK KILATAN PETIR AKTIF (STORM-ACTIVE)
         async function executeHighVoltageScrape() {
             const keyword = document.getElementById('keyword').value.trim();
             const city = document.getElementById('target-city').value;
@@ -519,19 +534,21 @@
             const statusText = document.getElementById('status-text');
             const resonanceBox = document.getElementById('resonance-box');
             const pulseLabel = document.getElementById('pulse-status-label');
+            const mainBody = document.getElementById('main-body');
 
             if(!keyword) {
                 alert('[!] Masukkan Target Keyword / Niche terlebih dahulu, Boss!');
                 return;
             }
 
-            // Nyalakan Efek Gelombang Resonansi Berdenyut
+            // Aktifkan Efek Petir Badai Aktif & EKG Resonansi
+            mainBody.classList.add('storm-active');
             resonanceBox.classList.add('active-pulse');
-            pulseLabel.innerText = "RESONANCE ACTIVE ⚡";
+            pulseLabel.innerText = "HIGH-VOLTAGE STORM ACTIVE ⚡";
             pulseLabel.className = "text-green-400 font-bold animate-pulse";
 
             statusText.innerText = `⚡ [ROBOT LOG]: Connecting to Maps Node "${city.toUpperCase()}" for "${keyword.toUpperCase()}"...`;
-            document.getElementById('result-table').innerHTML = `<tr><td colspan="6" class="py-6 text-center text-green-400 font-mono animate-pulse tracking-widest text-[11px]">[⚡ ROBOT ACTIVE]: BYPASSING API NODES & PARSING DEEP DATA...</td></tr>`;
+            document.getElementById('result-table').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-green-400 font-mono animate-pulse tracking-widest text-[11px]">[⚡ LIGHTNING SCRAPER ACTIVE]: BYPASSING API & INJECTING DEEP LEADS...</td></tr>`;
 
             try {
                 let res = await fetch(SCRIPT_URL, {
@@ -546,21 +563,22 @@
                     document.getElementById('result-table').innerHTML = "";
                     
                     let index = 0;
+                    // DELAY DIPERLAMBAT MENJADI 250MS PER BARIS (SANGAT MENARIK & DRAMATIS SEBAGAI TONTONAN)
                     let interval = setInterval(() => {
                         if(index < extractedLeads.length) {
                             let item = extractedLeads[index];
                             let rowHTML = `<tr class="hover:bg-green-950/30 transition border-b border-green-950">
-                                <td class="py-1.5 px-2 text-green-500">${index + 1}</td>
-                                <td class="py-1.5 px-2.5 font-bold text-green-300">${item.nama}</td>
-                                <td class="py-1.5 px-2.5 text-green-400 font-semibold">📞 ${item.wa}</td>
-                                <td class="py-1.5 px-2.5 text-slate-300">${item.email}</td>
-                                <td class="py-1.5 px-2.5 text-green-500">${item.kota}</td>
-                                <td class="py-1.5 px-2.5 text-slate-400">${item.alamat}</td>
+                                <td class="py-2 px-2 text-green-500 font-bold">${index + 1}</td>
+                                <td class="py-2 px-2.5 font-bold text-green-300">${item.nama}</td>
+                                <td class="py-2 px-2.5 text-green-400 font-semibold">📞 ${item.wa}</td>
+                                <td class="py-2 px-2.5 text-slate-300">${item.email}</td>
+                                <td class="py-2 px-2.5 text-green-500">${item.kota}</td>
+                                <td class="py-2 px-2.5 text-slate-400">${item.alamat}</td>
                             </tr>`;
                             document.getElementById('result-table').insertAdjacentHTML('beforeend', rowHTML);
                             document.getElementById('count').innerText = index + 1;
                             
-                            statusText.innerText = `⚡ [ROBOT EXTRACTING]: Captured lead #${index + 1} -> ${item.nama} (${item.kota})`;
+                            statusText.innerText = `⚡ [EXTRACTING LIVE]: Captured lead #${index + 1} -> ${item.nama} (${item.kota})`;
                             
                             let tableContainer = document.querySelector('.overflow-y-auto');
                             tableContainer.scrollTop = tableContainer.scrollHeight;
@@ -568,20 +586,23 @@
                             index++;
                         } else {
                             clearInterval(interval);
-                            // Matikan efek gelombang setelah selesai
+                            // Matikan efek badai petir & EKG setelah selesai
+                            mainBody.classList.remove('storm-active');
                             resonanceBox.classList.remove('active-pulse');
-                            pulseLabel.innerText = "LOCKED 100%";
+                            pulseLabel.innerText = "EXTRACTION LOCKED 100%";
                             pulseLabel.className = "text-emerald-400 font-bold";
-                            statusText.innerText = `⚡ EXTRACTION SUCCESS // ${extractedLeads.length} LEADS LOCKED & READY FOR CONTENT!`;
+                            statusText.innerText = `⚡ HIGH-VOLTAGE COMPLETE // ${extractedLeads.length} LEADS READY FOR EXPORT & CONTENT!`;
                         }
-                    }, 80);
+                    }, 250); // Jeda 250ms per baris membuat penonton terpukau melihat data masuk satu per satu
 
                 } else {
+                    mainBody.classList.remove('storm-active');
                     resonanceBox.classList.remove('active-pulse');
                     pulseLabel.innerText = "ERROR";
                     alert("Gagal menarik data simulasi.");
                 }
             } catch(e) {
+                mainBody.classList.remove('storm-active');
                 resonanceBox.classList.remove('active-pulse');
                 pulseLabel.innerText = "ERROR";
                 alert("Terjadi kesalahan koneksi server.");
@@ -606,12 +627,12 @@
             let html = "";
             filtered.forEach((item, idx) => {
                 html += `<tr class="hover:bg-green-950/30 transition border-b border-green-950">
-                    <td class="py-1.5 px-2 text-green-500">${idx + 1}</td>
-                    <td class="py-1.5 px-2.5 font-bold text-green-300">${item.nama}</td>
-                    <td class="py-1.5 px-2.5 text-green-400 font-semibold">📞 ${item.wa}</td>
-                    <td class="py-1.5 px-2.5 text-slate-300">${item.email}</td>
-                    <td class="py-1.5 px-2.5 text-green-500">${item.kota}</td>
-                    <td class="py-1.5 px-2.5 text-slate-400">${item.alamat}</td>
+                    <td class="py-2 px-2 text-green-500 font-bold">${idx + 1}</td>
+                    <td class="py-2 px-2.5 font-bold text-green-300">${item.nama}</td>
+                    <td class="py-2 px-2.5 text-green-400 font-semibold">📞 ${item.wa}</td>
+                    <td class="py-2 px-2.5 text-slate-300">${item.email}</td>
+                    <td class="py-2 px-2.5 text-green-500">${item.kota}</td>
+                    <td class="py-2 px-2.5 text-slate-400">${item.alamat}</td>
                 </tr>`;
             });
             tableBody.innerHTML = html;
